@@ -1,9 +1,9 @@
-package com.example.first_project;
+package com.library.Book.Persistence;
 
 import org.springframework.data.jpa.repository.JpaRepository;
 import org.springframework.stereotype.Repository;
 
-import com.example.first_project.model.BookEntity;
+import com.library.Book.model.BookEntity;
 
 @Repository
 
