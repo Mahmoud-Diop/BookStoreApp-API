@@ -1,9 +1,10 @@
 package com.library.Book.model;
+
 import java.util.Collection;
 import java.util.Collections;
+
 import org.springframework.security.core.GrantedAuthority;
 import org.springframework.security.core.authority.SimpleGrantedAuthority;
-
 
 import org.springframework.security.core.userdetails.UserDetails;
 
@@ -14,7 +15,8 @@ public class MyUserDetails implements UserDetails {
     public MyUserDetails(Users user) {
         this.user = user;
     }
-
+    
+    
     @Override
     public String getUsername() {
         return user.getUsername();
@@ -45,8 +47,7 @@ public class MyUserDetails implements UserDetails {
         return true;
     }
 
-    @Override
-    public Collection<? extends GrantedAuthority> getAuthorities() {
-        return Collections.singleton(new SimpleGrantedAuthority("USER"));
-    }
+    @Override public Collection<? extends GrantedAuthority> getAuthorities() {   
+           return Collections.singleton(new SimpleGrantedAuthority(user.getRole()));
+     }
 }

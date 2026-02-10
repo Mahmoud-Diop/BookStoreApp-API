@@ -1,5 +1,6 @@
 package com.library.Book.Service;
 
+
 import org.springframework.security.core.userdetails.UserDetails;
 import org.springframework.security.core.userdetails.UserDetailsService;
 import org.springframework.security.core.userdetails.UsernameNotFoundException;
@@ -22,13 +23,12 @@ public class MyUserDetailsService implements UserDetailsService {
     public UserDetails loadUserByUsername(String username) throws UsernameNotFoundException {
         
         Users user = userRepository.findByUsername(username);
+        
         if (user == null) {
             throw new UsernameNotFoundException("User not found with username: " + username);
         }
         return new MyUserDetails(user);
 
     }
-    
-    
 
 }
