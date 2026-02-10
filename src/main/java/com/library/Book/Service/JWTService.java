@@ -9,6 +9,7 @@ import java.util.Date;
 import javax.crypto.KeyGenerator;
 import javax.crypto.SecretKey;
 
+import org.springframework.beans.factory.annotation.Value;
 import org.springframework.security.core.userdetails.UserDetails;
 import org.springframework.stereotype.Service;
 
@@ -19,20 +20,12 @@ import io.jsonwebtoken.security.Keys;
 
 @Service
 public class JWTService {
-
+    @Value("${jwt.secret}")
     private String secretKey;
 
     public JWTService() {
-        try {
 
-            KeyGenerator keyGenered = KeyGenerator.getInstance("HmacSHA256");
-
-            SecretKey sk = keyGenered.generateKey();
-            this.secretKey = Base64.getEncoder().encodeToString(sk.getEncoded());
-
-        } catch (Exception e) {
-            e.printStackTrace();
-        }
+          
     }
 
     public String generateToken(UserDetails userDetails) {

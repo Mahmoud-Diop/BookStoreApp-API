@@ -2,6 +2,7 @@ package com.library.Book.model;
 
 import java.util.Collection;
 import java.util.Collections;
+import java.util.Optional;
 
 import org.springframework.security.core.GrantedAuthority;
 import org.springframework.security.core.authority.SimpleGrantedAuthority;
@@ -19,8 +20,9 @@ public class MyUserDetails implements UserDetails {
     
     @Override
     public String getUsername() {
-        return user.getUsername();
-    }
+        return user.getEmail();    }
+
+   
 
     @Override
     public String getPassword() {

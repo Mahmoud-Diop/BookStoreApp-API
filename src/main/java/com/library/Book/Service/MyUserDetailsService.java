@@ -1,5 +1,6 @@
 package com.library.Book.Service;
 
+import java.util.Optional;
 
 import org.springframework.security.core.userdetails.UserDetails;
 import org.springframework.security.core.userdetails.UserDetailsService;
@@ -20,13 +21,12 @@ public class MyUserDetailsService implements UserDetailsService {
     }
 
     @Override
-    public UserDetails loadUserByUsername(String username) throws UsernameNotFoundException {
+    public UserDetails loadUserByUsername(String email) throws UsernameNotFoundException {
         
-        Users user = userRepository.findByUsername(username);
+         Users user = userRepository.findByEmail(email).
+         orElseThrow(()->new UsernameNotFoundException("User not found with username: " + email));
         
-        if (user == null) {
-            throw new UsernameNotFoundException("User not found with username: " + username);
-        }
+ 
         return new MyUserDetails(user);
 
     }

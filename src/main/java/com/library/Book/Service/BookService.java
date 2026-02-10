@@ -7,6 +7,7 @@ import com.library.Book.model.BookEntity;
 import com.library.Book.model.exceptions.BookCreationException;
 
 import java.util.List;
+
 @Service
 public class BookService {
 
@@ -43,4 +44,15 @@ public class BookService {
     public void deleteBook(Long id) {
         bookRepository.deleteById(id);
     }
+
+    public BookEntity updateBook(Long id, String name, int pages) {
+        BookEntity book = bookRepository.findById(id)
+                .orElseThrow(() -> new RuntimeException("Book not found with id: " + id));
+
+        book.setName(name);
+        book.setPages(pages);
+
+        return bookRepository.save(book);
+    }
+
 }

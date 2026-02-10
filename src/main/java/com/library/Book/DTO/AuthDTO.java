@@ -1,26 +1,32 @@
-package com.library.Book.model;
+package com.library.Book.DTO;
 
-import jakarta.persistence.*;
-
-@Entity
-public class Users {
-    @Id
-    @GeneratedValue(strategy = GenerationType.IDENTITY)
-    private Long id;
+public class AuthDTO {
+    private String token;
     private String username;
-    @Column(unique = true) 
     private String email;
-    private String password;
     private String firstName;
     private String lastName;
     private String role;
 
-    public Long getId() {
-        return id;
+    public AuthDTO() {
+    } // constructeur vide
+
+    public AuthDTO(String token, String username, String email, String firstName, String lastName, String role) {
+        this.token = token;
+        this.username = username;
+        this.email = email;
+        this.firstName = firstName;
+        this.lastName = lastName;
+        this.role = role;
     }
 
-    public void setId(Long id) {
-        this.id = id;
+    // Getters et setters
+    public String getToken() {
+        return token;
+    }
+
+    public void setToken(String token) {
+        this.token = token;
     }
 
     public String getUsername() {
@@ -37,14 +43,6 @@ public class Users {
 
     public void setEmail(String email) {
         this.email = email;
-    }
-
-    public String getPassword() {
-        return password;
-    }
-
-    public void setPassword(String password) {
-        this.password = password;
     }
 
     public String getFirstName() {
